@@ -3,13 +3,15 @@ package conta;
 import java.util.Scanner;
 
 import conta.model.Conta;
+import conta.model.ContaCorrente;
+import conta.model.ContaPoupanca;
 import conta.util.Cores;
 
 public class Menu {
 
 	public static void main(String[] args) {
-		
-		//Teste da classe conta
+
+		// Teste da classe conta
 		Conta c1 = new Conta(1, 123, 1, "Adriana", 10000.0f);
 		c1.visualizar();
 		c1.sacar(12000.0f);
@@ -17,13 +19,29 @@ public class Menu {
 		c1.depositar(5000.0f);
 		c1.visualizar();
 
+		// Teste da classe conta corrente
+		ContaCorrente cc1 = new ContaCorrente(1, 123, 1, "José da Silva", 0.0f, 1000.0f);
+		cc1.visualizar();
+		cc1.sacar(12000.0f);
+		cc1.visualizar();
+		cc1.depositar(5000.0f);
+		cc1.visualizar();
+
+		// Teste da classe conta poupança
+		ContaPoupanca cp1 = new ContaPoupanca(2, 123, 2, "Maria dos Santos", 100000.0f, 15);
+		cp1.visualizar();
+		cp1.sacar(1000.0f);
+		cp1.visualizar();
+		cp1.depositar(5000.0f);
+		cp1.visualizar();
+
 		Scanner leia = new Scanner(System.in);
 
 		int opcao;
 
 		while (true) {
 
-			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND					
+			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND
 					+ " --------------------------------------------------- ");
 			System.out.println("|                                                   |");
 			System.out.println("|               BANCO DO BRAZIL COM Z               |");
@@ -43,7 +61,7 @@ public class Menu {
 			System.out.println(" --------------------------------------------------- ");
 			System.out.println(" Entre com a opção desejada:                         ");
 			System.out.println("                                                     " + Cores.TEXT_RESET);
-			opcao = leia.nextInt() ;
+			opcao = leia.nextInt();
 
 			if (opcao == 9) {
 				System.out.println("\n Banco do Brazil com Z - O seu futuro começa aqui!");
@@ -83,8 +101,8 @@ public class Menu {
 			}
 		}
 	}
-	
-	public static void sobre( ) {
+
+	public static void sobre() {
 		System.out.println("\n --------------------------------------------------- ");
 		System.out.println("| Projeto Desenvolvido por: Gabriella Jacubavicius  |");
 		System.out.println("| Generation Brasil - generation@generation.org     |");
