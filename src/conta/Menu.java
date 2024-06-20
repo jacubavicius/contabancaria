@@ -1,8 +1,9 @@
 package conta;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import conta.model.Conta;
 import conta.model.ContaCorrente;
 import conta.model.ContaPoupanca;
 import conta.util.Cores;
@@ -10,14 +11,6 @@ import conta.util.Cores;
 public class Menu {
 
 	public static void main(String[] args) {
-
-		// Teste da classe conta
-		Conta c1 = new Conta(1, 123, 1, "Adriana", 10000.0f);
-		c1.visualizar();
-		c1.sacar(12000.0f);
-		c1.visualizar();
-		c1.depositar(5000.0f);
-		c1.visualizar();
 
 		// Teste da classe conta corrente
 		ContaCorrente cc1 = new ContaCorrente(1, 123, 1, "José da Silva", 0.0f, 1000.0f);
@@ -61,7 +54,14 @@ public class Menu {
 			System.out.println(" --------------------------------------------------- ");
 			System.out.println(" Entre com a opção desejada:                         ");
 			System.out.println("                                                     " + Cores.TEXT_RESET);
-			opcao = leia.nextInt();
+
+			try {
+				opcao = leia.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("\nDigite valores inteiros!");
+				leia.nextInt();
+				opcao = 0;
+			}
 
 			if (opcao == 9) {
 				System.out.println("\n Banco do Brazil com Z - O seu futuro começa aqui!");
@@ -108,5 +108,18 @@ public class Menu {
 		System.out.println("| Generation Brasil - generation@generation.org     |");
 		System.out.println("| github.com/conteudoGeneration                     |");
 		System.out.println(" --------------------------------------------------- ");
+	}
+
+	public static void keyPress() {
+		
+		try {
+			
+			System.out.println(Cores.TEXT_RESET + "\n\nPressione enter para continuar");
+			System.in.read();
+			
+		} catch (IOException e) {
+			
+			System.out.println("Você pressionou uma tecla diferente de enter!");
+		}
 	}
 }
